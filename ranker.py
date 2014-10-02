@@ -38,7 +38,7 @@ def calc_ranked_points(pos_map, dsq_list):
         # remove any that are dsqaulified
         # note that we do this before working out the ties, so that any
         # dsq tie members are removed from contention
-        zones = [ z for z in zones if z not in dsq_list ]
+        zones = [z for z in zones if z not in dsq_list]
         if len(zones) == 0:
             continue
 
