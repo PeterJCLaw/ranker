@@ -40,5 +40,5 @@ Tests
 Tests can be run for the current interpreter by running ``./run-tests`` or for
 all supported available interpreters by running ``tox``.
 
-.. |Build Status| image:: https://travis-ci.org/PeterJCLaw/ranker.png
-   :target: https://travis-ci.org/PeterJCLaw/ranker
+.. |Build Status| image:: https://circleci.com/gh/PeterJCLaw/ranker.svg?style=svg
+   :target: https://circleci.com/gh/PeterJCLaw/ranker
