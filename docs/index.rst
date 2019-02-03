@@ -1,5 +1,5 @@
-Student Robotics Competition Ranker
-===================================
+League Ranker
+=============
 
 User Guide
 ----------

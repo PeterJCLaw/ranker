@@ -6,11 +6,10 @@ with open('README.rst') as f:
 
 
 setup(
-    name='sr.comp.ranker',
-    version='1.3.0',
+    name='league-ranker',
+    version='0.0.1',
     packages=find_packages(exclude=('tests',)),
-    package_data={'sr.comp.ranker': ['py.typed']},
-    namespace_packages=['sr', 'sr.comp'],
+    package_data={'league_ranker': ['py.typed']},
     url='https://ranker.readthedocs.io/en/latest/',
     project_urls={
         'Documentation': 'https://ranker.readthedocs.io/en/latest/',

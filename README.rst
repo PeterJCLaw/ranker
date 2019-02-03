@@ -1,5 +1,5 @@
-Ranker
-======
+League Ranker
+=============
 
 |Build Status|
 

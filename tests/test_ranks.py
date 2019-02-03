@@ -1,10 +1,10 @@
 import unittest
 
-from sr.comp import ranker
+import league_ranker as ranker
 
 if False: # mypy
     from typing import Dict, Mapping
-    from sr.comp.ranker import Collection, RankedPosition, TZone
+    from league_ranker import Collection, RankedPosition, TZone
 
 
 def to_ranks(pos_map):

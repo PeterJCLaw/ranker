@@ -1,7 +1,7 @@
 API
 ===
 
-.. automodule:: sr.comp.ranker
+.. automodule:: league_ranker
     :members:
     :undoc-members:
     :show-inheritance:

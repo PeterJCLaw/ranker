@@ -51,4 +51,3 @@ points algorithm:
     for the disqualified team.
 
 .. _rulebook: https://www.studentrobotics.org/docs/resources/2017/rulebook.pdf
-
