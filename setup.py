@@ -18,5 +18,5 @@ setup(
         'Sphinx >=1.3, <2'
     ],
     test_suite='tests',
-    zip_safe=False
+    zip_safe=True,
 )
