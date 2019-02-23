@@ -8,7 +8,7 @@ with open('README.rst') as f:
 setup(
     name='sr.comp.ranker',
     version='1.3.0',
-    packages=find_packages(),
+    packages=find_packages(exclude=('tests',)),
     namespace_packages=['sr', 'sr.comp'],
     long_description=long_description,
     author='Student Robotics Competition Software SIG',
