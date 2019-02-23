@@ -13,6 +13,7 @@ setup(
     long_description=long_description,
     author='Student Robotics Competition Software SIG',
     author_email='srobo-devel@googlegroups.com',
+    license='MIT',
     setup_requires=[
         'Sphinx >=1.3, <2'
     ],
