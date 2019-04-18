@@ -9,6 +9,8 @@ workflows:
       - build-35
       - build-36
       - build-37
+      - lint
+      - typecheck
 
 jobs:
   build-27: &build-template
@@ -38,3 +40,37 @@ jobs:
     <<: *build-template
     docker:
       - image: circleci/python:3.7
+
+  lint:
+    docker:
+      - image: circleci/python:3.7
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            venv/bin/pip install -r script/linting/requirements.txt
+      - run:
+          name: Lint
+          command: script/linting/lint
+          environment:
+            FLAKE8: venv/bin/flake8
+
+  typecheck:
+    docker:
+      - image: circleci/python:3.7
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            venv/bin/pip install -r script/typing/requirements.txt
+      - run:
+          name: Typecheck
+          command: script/typing/check
+          environment:
+            MYPY: venv/bin/mypy
