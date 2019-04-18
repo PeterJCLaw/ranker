@@ -9,6 +9,7 @@ setup(
     name='sr.comp.ranker',
     version='1.3.0',
     packages=find_packages(exclude=('tests',)),
+    package_data={'sr.comp.ranker': ['py.typed']},
     namespace_packages=['sr', 'sr.comp'],
     long_description=long_description,
     author='Student Robotics Competition Software SIG',
