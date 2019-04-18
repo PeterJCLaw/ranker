@@ -50,16 +50,16 @@ def calc_positions(zpoints, dsq_list=()):
     for zone, points in zpoints.items():
         # Wrap the points in a type which also encodes their disqualification
         quaifies_for_points = zone not in dsq_list
-        points = (
+        points_info = (
             quaifies_for_points,
             points if quaifies_for_points else None,
         )
-        points_map[points].add(zone)
+        points_map[points_info].add(zone)
 
     position = 1
-    for points in sorted(list(points_map.keys()), reverse=True):
-        pos_map[position] = points_map[points]
-        position += len(points_map[points])
+    for points_info in sorted(list(points_map.keys()), reverse=True):
+        pos_map[position] = points_map[points_info]
+        position += len(points_map[points_info])
 
     return pos_map
 
