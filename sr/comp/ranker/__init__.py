@@ -108,6 +108,7 @@ def _points_for_position(position, winner_points, num_tied):
 
     return points - (num_tied - 1)
 
+
 def calc_ranked_points(pos_map, dsq_list=(), num_zones=DEFAULT_NUM_ZONES):
     """
     Calculate league points from a mapping of positions to teams.
@@ -227,7 +228,7 @@ def _demo():
     """Run a quick demo of this module."""
 
     scores = {'ABC': 12,
-              'DEF':  3,
+              'DEF':  3,    # noqa:E241
               'ABC2': 4,
               'JLK': 10}
 
