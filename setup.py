@@ -17,6 +17,7 @@ setup(
         'Code': 'https://github.com/PeterJCLaw/ranker',
         'Issue tracker': 'https://github.com/PeterJCLaw/ranker/issues',
     },
+    description="League ranking for arbitrary numbers of competitors.",
     long_description=long_description,
     author='Student Robotics Competition Software SIG',
     author_email='srobo-devel@googlegroups.com',
