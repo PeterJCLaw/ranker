@@ -9,6 +9,7 @@ workflows:
       - build-35
       - build-36
       - build-37
+      - build-38
       - lint
       - typecheck
 
@@ -40,6 +41,11 @@ jobs:
     <<: *build-template
     docker:
       - image: circleci/python:3.7
+
+  build-38:
+    <<: *build-template
+    docker:
+      - image: circleci/python:3.8
 
   lint:
     docker:
