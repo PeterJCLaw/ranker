@@ -15,7 +15,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = 'sr.comp.ranker'
-copyright = '2015, Student Robotics'
+copyright = '2015, 2017, Student Robotics Contributors'
 
 release = '1.0.0'
 version = '1.0.0'
