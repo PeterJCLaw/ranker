@@ -11,6 +11,12 @@ setup(
     packages=find_packages(exclude=('tests',)),
     package_data={'sr.comp.ranker': ['py.typed']},
     namespace_packages=['sr', 'sr.comp'],
+    url='https://ranker.readthedocs.io/en/latest/',
+    project_urls={
+        'Documentation': 'https://ranker.readthedocs.io/en/latest/',
+        'Code': 'https://github.com/PeterJCLaw/ranker',
+        'Issue tracker': 'https://github.com/PeterJCLaw/ranker/issues',
+    },
     long_description=long_description,
     author='Student Robotics Competition Software SIG',
     author_email='srobo-devel@googlegroups.com',
