@@ -39,7 +39,7 @@ setup(
         'Typing :: Typed',
     ],
     setup_requires=[
-        'Sphinx >=2, <3',
+        'Sphinx >=1.8.5, <3',
     ],
     test_suite='tests',
     zip_safe=True,
