@@ -13,11 +13,11 @@ if False: # mypy
         Mapping,
         NewType,
         Optional,
-        Union,
         Sequence,
         Set,
-        TypeVar,
         Tuple,
+        TypeVar,
+        Union,
     )
     T = TypeVar('T')
     TZone = TypeVar('TZone', bound=Hashable)
