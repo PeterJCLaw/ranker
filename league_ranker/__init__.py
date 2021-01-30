@@ -37,7 +37,7 @@ DEFAULT_NUM_ZONES = 4
 
 def calc_positions(zpoints, dsq_list=()):
     # type: (Mapping[TZone, TGamePoints], Container[TZone]) -> Dict[RankedPosition, Set[TZone]]
-    """
+    r"""
     Calculate positions from a map of zones to in-game points.
 
     Parameters
@@ -141,7 +141,7 @@ def _points_for_position(position, winner_points, num_tied):
 
 def calc_ranked_points(pos_map, dsq_list=(), num_zones=DEFAULT_NUM_ZONES):
     # type: (Mapping[RankedPosition, Collection[TZone]], Sequence[TZone], int) -> Dict[TZone, LeaguePoints]
-    """
+    r"""
     Calculate league points from a mapping of positions to teams.
 
     The league points algorithm is documented in :ref:`league-points-algorithm`.
