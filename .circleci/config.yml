@@ -1,36 +1,41 @@
 version: 2.1
 
 references:
-  build-template: &build-template
-    steps:
-      - checkout
-      - run: python setup.py test
+  parametrised-python-executor: &parametrised-python-executor
+    parameters:
+      version:
+        type: string
+    executor:
+      name: python
+      version: << parameters.version >>
+  python-full-version-matrix: &python-full-version-matrix
+    matrix:
+      parameters:
+        version: ["3.7", "3.8", "3.9"]
+  filter-tags: &filter-tags
+    filters:
+      branches:
+        ignore: /.*/
+      tags:
+        only: /^v.*/
 
-workflows:
-  version: 2
-  build-and-test:
-    jobs:
-      - build-37
-      - build-38
-      - build-39
-      - lint
-      - typecheck
+
+executors:
+  python:
+    parameters:
+      version:
+        type: string
+    docker:
+      - image: circleci/python:<< parameters.version >>
+
 
 jobs:
-  build-37:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.7
+  test:
+    <<: *parametrised-python-executor
 
-  build-38:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.8
-
-  build-39:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run: ./script/test
 
   lint:
     docker:
@@ -65,3 +70,50 @@ jobs:
           command: script/typing/check
           environment:
             MYPY: venv/bin/mypy
+
+  release:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+
+      - run:
+          name: Setup virtualenv
+          command: |
+            python3 -m venv venv
+            venv/bin/pip install -r script/release/requirements.txt
+
+      - run:
+          name: Push to PyPI
+          command: |
+            source venv/bin/activate
+            export TWINE_USERNAME=__token__
+            export TWINE_PASSWORD=$PYPI_TOKEN
+            ./script/release/release
+
+
+workflows:
+  version: 2.1
+
+  validate:
+    jobs:
+      - test:
+          <<: *python-full-version-matrix
+      - lint
+      - typecheck
+
+  release:
+    jobs:
+      - test:
+          <<: *python-full-version-matrix
+          <<: *filter-tags
+      - lint:
+          <<: *filter-tags
+      - typecheck:
+          <<: *filter-tags
+      - release:
+          <<: *filter-tags
+          requires:
+            - test
+            - lint
+            - typecheck
