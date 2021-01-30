@@ -40,6 +40,5 @@ setup(
     setup_requires=[
         'Sphinx >=1.8.5, <2',
     ],
-    test_suite='tests',
     zip_safe=True,
 )

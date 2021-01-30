@@ -1,2 +1,5 @@
-#!/bin/sh
-exec python setup.py test $@
+#!/bin/bash
+
+cd $(dirname  $(dirname $0))
+
+python3 -m unittest discover "$@"
