@@ -86,7 +86,7 @@ def calc_positions(zpoints, dsq_list=()):
         points_map[points_info].add(zone)
 
     position = RankedPosition(1)
-    for points_info in sorted(list(points_map.keys()), reverse=True):
+    for points_info in sorted(points_map.keys(), reverse=True):
         pos_map[position] = points_map[points_info]
         position = RankedPosition(position + len(points_map[points_info]))
 
