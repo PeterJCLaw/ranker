@@ -32,7 +32,7 @@ subsequent places reduce by 2 points per place. Ties are resolved as described
 and as a result of the points per place reducing by two, the points for any
 entrant will always be an integer.
 
-It supports Python 2.7 and 3.x.
+It supports Python 3.7+.
 
 Tests
 ~~~~~

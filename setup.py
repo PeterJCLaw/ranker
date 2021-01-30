@@ -7,7 +7,7 @@ with open('README.rst') as f:
 
 setup(
     name='league-ranker',
-    version='0.0.1',
+    version='0.1',
     packages=find_packages(exclude=('tests',)),
     package_data={'league_ranker': ['py.typed']},
     url='https://ranker.readthedocs.io/en/latest/',
@@ -30,14 +30,13 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Typing :: Typed',
     ],
+    python_requires='>=3.7',
     setup_requires=[
         'Sphinx >=1.8.5, <2',
     ],

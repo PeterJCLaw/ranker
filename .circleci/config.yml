@@ -1,42 +1,22 @@
-version: 2
+version: 2.1
+
+references:
+  build-template: &build-template
+    steps:
+      - checkout
+      - run: python setup.py test
 
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - build-27
-      - build-34
-      - build-35
-      - build-36
       - build-37
       - build-38
+      - build-39
       - lint
       - typecheck
 
 jobs:
-  build-27: &build-template
-    docker:
-      - image: circleci/python:2.7
-
-    steps:
-      - checkout
-      - run: python setup.py test
-
-  build-34:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.4
-
-  build-35:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.5
-
-  build-36:
-    <<: *build-template
-    docker:
-      - image: circleci/python:3.6
-
   build-37:
     <<: *build-template
     docker:
@@ -46,6 +26,11 @@ jobs:
     <<: *build-template
     docker:
       - image: circleci/python:3.8
+
+  build-39:
+    <<: *build-template
+    docker:
+      - image: circleci/python:3.9
 
   lint:
     docker:
