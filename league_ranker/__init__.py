@@ -1,40 +1,37 @@
 """Conversions of game points into league points."""
 
 from collections import defaultdict
+from typing import (
+    Container,
+    Dict,
+    Hashable,
+    List,
+    Mapping,
+    NewType,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    TypeVar,
+    Union,
+)
 
-if False: # mypy
-    from typing import (
-        Container,
-        Dict,
-        Hashable,
-        List,
-        Mapping,
-        NewType,
-        Optional,
-        Sequence,
-        Set,
-        Tuple,
-        TypeVar,
-        Union,
-    )
-    T = TypeVar('T')
-    TZone = TypeVar('TZone', bound=Hashable)
-    TGamePoints = TypeVar('TGamePoints')
+T = TypeVar('T')
+TZone = TypeVar('TZone', bound=Hashable)
+TGamePoints = TypeVar('TGamePoints')
 
-    Collection = Union[Set[T], Sequence[T]]
+Collection = Union[Set[T], Sequence[T]]
 
-    RankedPosition = NewType('RankedPosition', int)
-    LeaguePoints = NewType('LeaguePoints', int)
-else:
-    def RankedPosition(x): return x # type: ignore
-    def LeaguePoints(x): return x # type: ignore
-
+RankedPosition = NewType('RankedPosition', int)
+LeaguePoints = NewType('LeaguePoints', int)
 
 DEFAULT_NUM_ZONES = 4
 
 
-def calc_positions(zpoints, dsq_list=()):
-    # type: (Mapping[TZone, TGamePoints], Container[TZone]) -> Dict[RankedPosition, Set[TZone]]
+def calc_positions(
+    zpoints: Mapping[TZone, TGamePoints],
+    dsq_list: Container[TZone] = (),
+) -> Dict[RankedPosition, Set[TZone]]:
     r"""
     Calculate positions from a map of zones to in-game points.
 
@@ -72,7 +69,7 @@ def calc_positions(zpoints, dsq_list=()):
     """
 
     pos_map = {}
-    points_map = defaultdict(set)  # type: Dict[Tuple[bool, Optional[TGamePoints]], Set[TZone]]
+    points_map: Dict[Tuple[bool, Optional[TGamePoints]], Set[TZone]] = defaultdict(set)
 
     for zone, points in zpoints.items():
         # Wrap the points in a type which also encodes their disqualification
@@ -91,8 +88,11 @@ def calc_positions(zpoints, dsq_list=()):
     return pos_map
 
 
-def _points_for_position(position, winner_points, num_tied):
-    # type: (RankedPosition, LeaguePoints, int) -> LeaguePoints
+def _points_for_position(
+    position: RankedPosition,
+    winner_points: LeaguePoints,
+    num_tied: int,
+) -> LeaguePoints:
     """
     Calculate the number of league points for a given position, allowing for
     ties.
@@ -137,8 +137,11 @@ def _points_for_position(position, winner_points, num_tied):
     return LeaguePoints(points - (num_tied - 1))
 
 
-def calc_ranked_points(pos_map, dsq_list=(), num_zones=DEFAULT_NUM_ZONES):
-    # type: (Mapping[RankedPosition, Collection[TZone]], Sequence[TZone], int) -> Dict[TZone, LeaguePoints]
+def calc_ranked_points(
+    pos_map: Mapping[RankedPosition, Collection[TZone]],
+    dsq_list: Sequence[TZone] = (),
+    num_zones: int = DEFAULT_NUM_ZONES,
+) -> Dict[TZone, LeaguePoints]:
     r"""
     Calculate league points from a mapping of positions to teams.
 
@@ -233,8 +236,11 @@ def calc_ranked_points(pos_map, dsq_list=(), num_zones=DEFAULT_NUM_ZONES):
     return rpoints
 
 
-def get_ranked_points(zpoints, dsq=(), num_zones=DEFAULT_NUM_ZONES):
-    # type: (Mapping[TZone, TGamePoints], Sequence[TZone], int) -> Dict[TZone, LeaguePoints]
+def get_ranked_points(
+    zpoints: Mapping[TZone, TGamePoints],
+    dsq: Sequence[TZone] = (),
+    num_zones: int = DEFAULT_NUM_ZONES,
+) -> Dict[TZone, LeaguePoints]:
     """
     Compute, from a mapping of teams to game points, the teams' league points.
 
@@ -254,8 +260,7 @@ def get_ranked_points(zpoints, dsq=(), num_zones=DEFAULT_NUM_ZONES):
     return rpoints
 
 
-def _demo():
-    # type: () -> None
+def _demo() -> None:
     """Run a quick demo of this module."""
 
     scores = {'ABC': 12,
@@ -263,7 +268,7 @@ def _demo():
               'ABC2': 4,
               'JLK': 10}
 
-    dsq = []  # type: List[str]
+    dsq: List[str] = []
 
     print('Original scores:', scores)
     ranked_scores = get_ranked_points(scores, dsq)
