@@ -12,31 +12,31 @@ def to_ranks(pos_map):
     return {ranker.RankedPosition(k): v for k, v in pos_map.items()}
 
 
-simple_data = { '0': 3, '1': 2, '2': 1, '3': 0 }
-simple_pos = to_ranks({ 1: set(['0']), 2: set(['1']), 3: set(['2']), 4: set(['3']) })
-simple_points = { '0': 8, '1': 6, '2': 4, '3': 2 }
-simple_points_5_zones = { '0': 10, '1': 8, '2': 6, '3': 4 }
+simple_data = {'0': 3, '1': 2, '2': 1, '3': 0}
+simple_pos = to_ranks({1: set(['0']), 2: set(['1']), 3: set(['2']), 4: set(['3'])})
+simple_points = {'0': 8, '1': 6, '2': 4, '3': 2}
+simple_points_5_zones = {'0': 10, '1': 8, '2': 6, '3': 4}
 
-two_teams_data = { '0': 3, '1': 2 }
-two_teams_pos = to_ranks({ 1: set(['0']), 2: set(['1']) })
-two_teams_points_2_zones = { '0': 4, '1': 2 }
-two_teams_points_4_zones = { '0': 8, '1': 6 }
+two_teams_data = {'0': 3, '1': 2}
+two_teams_pos = to_ranks({1: set(['0']), 2: set(['1'])})
+two_teams_points_2_zones = {'0': 4, '1': 2}
+two_teams_points_4_zones = {'0': 8, '1': 6}
 
-dsq_data = { '0': 3, '1': 2, '2': 1, '3': 0 }
-dsq_dsq = [ '0', '2' ]
-dsq_pos = to_ranks({ 1: set(['1']), 2: set(['3']), 3: set(['0', '2']) })
-dsq_points = { '0': 0, '1': 8, '2': 0, '3': 6 }
+dsq_data = {'0': 3, '1': 2, '2': 1, '3': 0}
+dsq_dsq = ['0', '2']
+dsq_pos = to_ranks({1: set(['1']), 2: set(['3']), 3: set(['0', '2'])})
+dsq_points = {'0': 0, '1': 8, '2': 0, '3': 6}
 
-tie1_data = { '0': 3, '1': 3, '2': 0, '3': 0 }
-tie1_pos = to_ranks({ 1: set(['1', '0']), 3: set(['3', '2']) })
-tie1_points_4_zones = { '0': 7, '1': 7, '2': 3, '3': 3 }
-tie1_points_5_zones = { '0': 9, '1': 9, '2': 5, '3': 5 }
+tie1_data = {'0': 3, '1': 3, '2': 0, '3': 0}
+tie1_pos = to_ranks({1: set(['1', '0']), 3: set(['3', '2'])})
+tie1_points_4_zones = {'0': 7, '1': 7, '2': 3, '3': 3}
+tie1_points_5_zones = {'0': 9, '1': 9, '2': 5, '3': 5}
 
-tie2_data = { '0': 3, '1': 3, '2': 0, '3': 0 }
-tie2_dsq = [ '0', '2' ]
-tie2_pos = to_ranks({ 1: set(['1']), 2: set(['3']), 3: set(['0', '2']) })
-tie2_points_4_zones = { '0': 0, '1': 8, '2': 0, '3': 6 }
-tie2_points_5_zones = { '0': 0, '1': 10, '2': 0, '3': 8 }
+tie2_data = {'0': 3, '1': 3, '2': 0, '3': 0}
+tie2_dsq = ['0', '2']
+tie2_pos = to_ranks({1: set(['1']), 2: set(['3']), 3: set(['0', '2'])})
+tie2_points_4_zones = {'0': 0, '1': 8, '2': 0, '3': 6}
+tie2_points_5_zones = {'0': 0, '1': 10, '2': 0, '3': 8}
 
 
 class PositionsTests(unittest.TestCase):
