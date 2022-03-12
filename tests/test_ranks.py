@@ -6,9 +6,9 @@ if False: # mypy
     from typing import Dict, Mapping
     from league_ranker import Collection, RankedPosition, TZone
 
-
-def to_ranks(pos_map):
-    # type: (Dict[int, Collection[TZone]]) -> Mapping[RankedPosition, Collection[TZone]]
+def to_ranks(
+    pos_map: Dict[int, Collection[TZone]],
+) -> Mapping[RankedPosition, Collection[TZone]]:
     return {ranker.RankedPosition(k): v for k, v in pos_map.items()}
 
 
@@ -42,8 +42,7 @@ tie2_points_5_zones = {'0': 0, '1': 10, '2': 0, '3': 8}
 class PositionsTests(unittest.TestCase):
     longMessage = True
 
-    def test_negative_points(self):
-        # type: () -> None
+    def test_negative_points(self) -> None:
         # Made negative by subtracting a number large enough to make them all
         # negative
         offset = 3 + max(simple_data.values())
@@ -52,8 +51,7 @@ class PositionsTests(unittest.TestCase):
         pos = ranker.calc_positions(data, [])
         self.assertEqual(simple_pos, pos, "Wrong positions")
 
-    def test_non_integer_points(self):
-        # type: () -> None
+    def test_non_integer_points(self) -> None:
         # Zero prefixed numbers stored as strings
         max_len = len(str(max(simple_data.values())))
         data = {k: str(v).zfill(max_len) for k, v in simple_data.items()}
@@ -61,38 +59,31 @@ class PositionsTests(unittest.TestCase):
         pos = ranker.calc_positions(data, [])
         self.assertEqual(simple_pos, pos, "Wrong positions")
 
-    def test_simple(self):
-        # type: () -> None
+    def test_simple(self) -> None:
         pos = ranker.calc_positions(simple_data, [])
         self.assertEqual(simple_pos, pos, "Wrong positions")
 
-    def test_simple_no_dsq(self):
-        # type: () -> None
+    def test_simple_no_dsq(self) -> None:
         pos = ranker.calc_positions(simple_data)
         self.assertEqual(simple_pos, pos, "Wrong positions")
 
-    def test_two_teams(self):
-        # type: () -> None
+    def test_two_teams(self) -> None:
         pos = ranker.calc_positions(two_teams_data, [])
         self.assertEqual(two_teams_pos, pos, "Wrong positions")
 
-    def test_tie(self):
-        # type: () -> None
+    def test_tie(self) -> None:
         pos = ranker.calc_positions(tie1_data, [])
         self.assertEqual(tie1_pos, pos, "Wrong positions")
 
-    def test_tie_no_dsq(self):
-        # type: () -> None
+    def test_tie_no_dsq(self) -> None:
         pos = ranker.calc_positions(tie1_data)
         self.assertEqual(tie1_pos, pos, "Wrong positions")
 
-    def test_dsq(self):
-        # type: () -> None
+    def test_dsq(self) -> None:
         pos = ranker.calc_positions(dsq_data, dsq_dsq)
         self.assertEqual(dsq_pos, pos, "Wrong positions")
 
-    def test_dsq_tie(self):
-        # type: () -> None
+    def test_dsq_tie(self) -> None:
         pos = ranker.calc_positions(tie2_data, tie2_dsq)
         self.assertEqual(tie2_pos, pos, "Wrong positions")
 
@@ -100,70 +91,57 @@ class PositionsTests(unittest.TestCase):
 class RankedPointsTests(unittest.TestCase):
     longMessage = True
 
-    def test_reject_too_may_teams(self):
-        # type: () -> None
+    def test_reject_too_may_teams(self) -> None:
         # self-check
         self.assertGreater(len(simple_pos), 2, "Need more than two entrants")
 
         with self.assertRaises(ValueError):
             ranker.calc_ranked_points(simple_pos, num_zones=2)
 
-    def test_simple(self):
-        # type: () -> None
+    def test_simple(self) -> None:
         points = ranker.calc_ranked_points(simple_pos, [])
         self.assertEqual(simple_points, points, "Wrong points")
 
-    def test_simple_spare_zone(self):
-        # type: () -> None
+    def test_simple_spare_zone(self) -> None:
         points = ranker.calc_ranked_points(simple_pos, num_zones=5)
         self.assertEqual(simple_points_5_zones, points, "Wrong points")
 
-    def test_simple_no_dsq(self):
-        # type: () -> None
+    def test_simple_no_dsq(self) -> None:
         points = ranker.calc_ranked_points(simple_pos)
         self.assertEqual(simple_points, points, "Wrong points")
 
-    def test_two_teams(self):
-        # type: () -> None
+    def test_two_teams(self) -> None:
         points = ranker.calc_ranked_points(two_teams_pos, num_zones=2)
         self.assertEqual(two_teams_points_2_zones, points, "Wrong points")
 
-    def test_two_teams_two_spare_zones(self):
-        # type: () -> None
+    def test_two_teams_two_spare_zones(self) -> None:
         points = ranker.calc_ranked_points(two_teams_pos, num_zones=4)
         self.assertEqual(two_teams_points_4_zones, points, "Wrong points")
 
-    def test_tie(self):
-        # type: () -> None
+    def test_tie(self) -> None:
         points = ranker.calc_ranked_points(tie1_pos, [])
         self.assertEqual(tie1_points_4_zones, points, "Wrong points")
 
-    def test_tie_no_dsq(self):
-        # type: () -> None
+    def test_tie_no_dsq(self) -> None:
         points = ranker.calc_ranked_points(tie1_pos)
         self.assertEqual(tie1_points_4_zones, points, "Wrong points")
 
-    def test_dsq_tie(self):
-        # type: () -> None
+    def test_dsq_tie(self) -> None:
         points = ranker.calc_ranked_points(tie2_pos, tie2_dsq)
         self.assertEqual(tie2_points_4_zones, points, "Wrong points")
 
-    def test_dsq_tie_one_spare_zone(self):
-        # type: () -> None
+    def test_dsq_tie_one_spare_zone(self) -> None:
         points = ranker.calc_ranked_points(tie2_pos, tie2_dsq, num_zones=5)
         self.assertEqual(tie2_points_5_zones, points, "Wrong points")
 
-    def test_detects_position_overlap_single_tie(self):
-        # type: () -> None
+    def test_detects_position_overlap_single_tie(self) -> None:
         with self.assertRaises(ValueError):
             ranker.calc_ranked_points(to_ranks({1: ['A', 'B'], 2: ['C', 'D']}))
 
-    def test_detects_higher_position_overlap_double_tie_higher(self):
-        # type: () -> None
+    def test_detects_higher_position_overlap_double_tie_higher(self) -> None:
         with self.assertRaises(ValueError):
             ranker.calc_ranked_points(to_ranks({1: ['A', 'B', 'C'], 2: ['D']}))
 
-    def test_detects_lower_position_overlap_double_tie(self):
-        # type: () -> None
+    def test_detects_lower_position_overlap_double_tie(self) -> None:
         with self.assertRaises(ValueError):
             ranker.calc_ranked_points(to_ranks({1: ['A', 'B', 'C'], 3: ['D']}))
