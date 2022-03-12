@@ -2,6 +2,7 @@
 
 from collections import defaultdict
 from typing import (
+    Collection,
     Container,
     Dict,
     Hashable,
@@ -13,14 +14,11 @@ from typing import (
     Set,
     Tuple,
     TypeVar,
-    Union,
 )
 
 T = TypeVar('T')
 TZone = TypeVar('TZone', bound=Hashable)
 TGamePoints = TypeVar('TGamePoints')
-
-Collection = Union[Set[T], Sequence[T]]
 
 RankedPosition = NewType('RankedPosition', int)
 LeaguePoints = NewType('LeaguePoints', int)
