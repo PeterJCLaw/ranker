@@ -27,7 +27,7 @@ The ranker supports an arbitrary number of entrants and zones (as long as there
 are fewer entrants than zones) and will return points which follow the pattern
 described above.
 
-The points for the winning team will be 2 * the number of zones, points for
+The points for the winning team will be 2 × the number of zones, points for
 subsequent places reduce by 2 points per place. Ties are resolved as described
 and as a result of the points per place reducing by two, the points for any
 entrant will always be an integer.
