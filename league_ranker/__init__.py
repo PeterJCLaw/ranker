@@ -99,7 +99,7 @@ def _points_for_position(
 
     The number of points awarded decreases by two for each position below the
     winner, ties are resolved by sharing the points equally. For example, if a
-    tied posiion would normally earn earn 8 points and there is a three-way tie
+    tied position would normally earn earn 8 points and there is a three-way tie
     for first place, each gets 6pts since (8+6+4)/3.
 
     While we could loop over the tied positions to share the points out, it's
@@ -175,7 +175,7 @@ def calc_ranked_points(
     Three teams tied for first place in a four-zone arena will each earn 6
     points (since this is ``(8+6+4)/3``).
 
-    Some examples of usage are shownn below.
+    Some examples of usage are shown below.
 
     >>> calc_ranked_points({1: ['A'], 2: ['B'], 3: ['C'], 4: ['D']})
     {'A': 8, 'B': 6, 'C': 4, 'D': 2}
@@ -209,7 +209,7 @@ def calc_ranked_points(
     winner_points = LeaguePoints(2 * num_zones)
 
     for pos, zones in pos_map.items():
-        # remove any that are dsqaulified
+        # remove any that are disqualified
         # note that we do this before working out the ties, so that any
         # dsq tie members are removed from contention
         zones = [z for z in zones if z not in dsq_list]
@@ -276,7 +276,7 @@ def _demo() -> None:
 
     dsq = ['ABC']
 
-    print("And now disqulifying 'ABC'.")
+    print("And now disqualifying 'ABC'.")
     ranked_scores = get_ranked_points(scores, dsq)
     print('Ranked scores:', ranked_scores)
 
