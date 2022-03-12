@@ -73,10 +73,10 @@ def calc_positions(
 
     for zone, points in zpoints.items():
         # Wrap the points in a type which also encodes their disqualification
-        quaifies_for_points = zone not in dsq_list
+        qualifies_for_points = zone not in dsq_list
         points_info = (
-            quaifies_for_points,
-            points if quaifies_for_points else None,
+            qualifies_for_points,
+            points if qualifies_for_points else None,
         )
         points_map[points_info].add(zone)
 
