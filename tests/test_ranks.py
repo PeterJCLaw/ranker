@@ -7,7 +7,7 @@ if False: # mypy
     from league_ranker import Collection, RankedPosition, TZone
 
 def to_ranks(
-    pos_map: Dict[int, Collection[TZone]],
+    pos_map: Mapping[int, Collection[TZone]],
 ) -> Mapping[RankedPosition, Collection[TZone]]:
     return {ranker.RankedPosition(k): v for k, v in pos_map.items()}
 
