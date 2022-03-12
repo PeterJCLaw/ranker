@@ -36,7 +36,7 @@ setup(
     ],
     python_requires='>=3.7',
     setup_requires=[
-        'Sphinx >=1.8.5, <2',
+        'Sphinx >=1.8.5, <5',
     ],
     zip_safe=True,
 )
