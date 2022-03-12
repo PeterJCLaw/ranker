@@ -2,4 +2,4 @@
 if [ -z "$MYPY" ]; then
     MYPY=mypy
 fi
-exec "$MYPY" league_ranker tests
+exec "$MYPY" league_ranker tests setup.py
