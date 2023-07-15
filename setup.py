@@ -7,7 +7,7 @@ with open('README.rst') as f:
 
 setup(
     name='league-ranker',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(exclude=('tests',)),
     package_data={'league_ranker': ['py.typed']},
     url='https://ranker.readthedocs.io/en/latest/',
