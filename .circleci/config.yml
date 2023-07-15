@@ -34,6 +34,22 @@ executors:
 
 
 jobs:
+  docs:
+    <<: *parametrised-python-executor
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            venv/bin/pip install -r script/docs/requirements.txt
+      - run:
+          name: Build the docs
+          command: |
+            source venv/bin/activate
+            ./script/docs/build.sh
+
   test:
     <<: *parametrised-python-executor
 
@@ -99,6 +115,8 @@ workflows:
 
   validate:
     jobs:
+      - docs:
+          <<: *python-top-and-bottom-version-matrix
       - test:
           <<: *python-full-version-matrix
       - lint:
@@ -108,6 +126,9 @@ workflows:
 
   release:
     jobs:
+      - docs:
+          <<: *python-top-and-bottom-version-matrix
+          <<: *filter-tags
       - test:
           <<: *python-full-version-matrix
           <<: *filter-tags
@@ -120,6 +141,7 @@ workflows:
       - release:
           <<: *filter-tags
           requires:
+            - docs
             - test
             - lint
             - typecheck
