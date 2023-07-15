@@ -12,6 +12,10 @@ references:
     matrix:
       parameters:
         version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+  python-top-and-bottom-version-matrix: &python-top-and-bottom-version-matrix
+    matrix:
+      parameters:
+        version: ["3.7", "3.11"]
   filter-tags: &filter-tags
     filters:
       branches:
@@ -38,8 +42,7 @@ jobs:
       - run: ./script/test
 
   lint:
-    docker:
-      - image: cimg/python:3.7
+    <<: *parametrised-python-executor
 
     steps:
       - checkout
@@ -55,8 +58,7 @@ jobs:
             FLAKE8: venv/bin/flake8
 
   typecheck:
-    docker:
-      - image: cimg/python:3.7
+    <<: *parametrised-python-executor
 
     steps:
       - checkout
@@ -99,8 +101,10 @@ workflows:
     jobs:
       - test:
           <<: *python-full-version-matrix
-      - lint
-      - typecheck
+      - lint:
+          <<: *python-top-and-bottom-version-matrix
+      - typecheck:
+          <<: *python-top-and-bottom-version-matrix
 
   release:
     jobs:
@@ -108,8 +112,10 @@ workflows:
           <<: *python-full-version-matrix
           <<: *filter-tags
       - lint:
+          <<: *python-top-and-bottom-version-matrix
           <<: *filter-tags
       - typecheck:
+          <<: *python-top-and-bottom-version-matrix
           <<: *filter-tags
       - release:
           <<: *filter-tags
