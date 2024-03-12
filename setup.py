@@ -1,7 +1,8 @@
+from pathlib import Path
+
 from setuptools import find_packages, setup
 
-
-with open('README.rst') as f:
+with open(Path(__file__).parent / 'README.rst') as f:
     long_description = f.read()
 
 
