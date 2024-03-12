@@ -1,7 +1,7 @@
 League Ranker
 =============
 
-|Build Status|
+|Build Status| |PyPI - Version|
 
 Given a collection of entrants and their scores, sort them and return their
 ranked points.
@@ -42,3 +42,6 @@ all supported available interpreters by running ``tox``.
 
 .. |Build Status| image:: https://circleci.com/gh/PeterJCLaw/ranker.svg?style=svg
    :target: https://circleci.com/gh/PeterJCLaw/ranker
+
+.. |PyPI - Version| image:: https://img.shields.io/pypi/v/league-ranker
+   :target: https://pypi.org/project/league-ranker/
