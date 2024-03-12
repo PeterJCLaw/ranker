@@ -15,7 +15,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = 'league_ranker'
-copyright = '2015, 2017, League Ranker Contributors'
+copyright = '2015, 2017, 2019, League Ranker Contributors'
 
 release = '1.0.0'
 version = '1.0.0'
