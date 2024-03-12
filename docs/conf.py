@@ -1,8 +1,5 @@
-import os
-import sys
-
-
-sys.path.insert(0, os.path.abspath('..'))
+import subprocess
+from pathlib import Path
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -17,8 +14,14 @@ master_doc = 'index'
 project = 'league_ranker'
 copyright = '2015, 2017, 2019, League Ranker Contributors'
 
-release = '1.0.0'
-version = '1.0.0'
+release = version = subprocess.check_output(
+    [
+        'python',
+        str(Path(__file__).parent.parent / 'setup.py'),
+        '--version',
+    ],
+    text=True,
+)
 
 html_theme = 'alabaster'
 
