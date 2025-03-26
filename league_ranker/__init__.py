@@ -10,7 +10,6 @@ from typing import (
     Mapping,
     NewType,
     Optional,
-    Sequence,
     Set,
     Tuple,
     TypeVar,
@@ -137,7 +136,7 @@ def _points_for_position(
 
 def calc_ranked_points(
     pos_map: Mapping[RankedPosition, Collection[TZone]],
-    dsq_list: Sequence[TZone] = (),
+    dsq_list: Collection[TZone] = (),
     num_zones: int = DEFAULT_NUM_ZONES,
 ) -> Dict[TZone, LeaguePoints]:
     r"""
@@ -236,7 +235,7 @@ def calc_ranked_points(
 
 def get_ranked_points(
     zpoints: Mapping[TZone, TGamePoints],
-    dsq: Sequence[TZone] = (),
+    dsq: Collection[TZone] = (),
     num_zones: int = DEFAULT_NUM_ZONES,
 ) -> Dict[TZone, LeaguePoints]:
     """
