@@ -12,7 +12,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = 'league_ranker'
-copyright = '2015, 2017, 2019, League Ranker Contributors'
+copyright = '2013-2019, 2021-2025, League Ranker Contributors'
 
 release = version = subprocess.check_output(
     [
