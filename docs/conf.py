@@ -25,4 +25,6 @@ release = version = subprocess.check_output(
 
 html_theme = 'alabaster'
 
-intersphinx_mapping = {'http://docs.python.org/': None}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+}
